@@ -89,7 +89,8 @@
             this._ResetButton});
             this._MainToolStrip.Location = new System.Drawing.Point(0, 0);
             this._MainToolStrip.Name = "_MainToolStrip";
-            this._MainToolStrip.Size = new System.Drawing.Size(712, 25);
+            this._MainToolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this._MainToolStrip.Size = new System.Drawing.Size(1924, 25);
             this._MainToolStrip.TabIndex = 1;
             // 
             // _StoreButton
@@ -117,6 +118,7 @@
             // 
             // _ResetButton
             // 
+            this._ResetButton.Enabled = false;
             this._ResetButton.Image = global::SAM.Game.Resources.Reset;
             this._ResetButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._ResetButton.Name = "_ResetButton";
@@ -137,9 +139,10 @@
             this._CountryStatusLabel,
             this._GameStatusLabel,
             this._DownloadStatusLabel});
-            this._MainStatusStrip.Location = new System.Drawing.Point(0, 370);
+            this._MainStatusStrip.Location = new System.Drawing.Point(0, 1039);
             this._MainStatusStrip.Name = "_MainStatusStrip";
-            this._MainStatusStrip.Size = new System.Drawing.Size(712, 22);
+            this._MainStatusStrip.Padding = new System.Windows.Forms.Padding(3, 0, 44, 0);
+            this._MainStatusStrip.Size = new System.Drawing.Size(1924, 22);
             this._MainStatusStrip.TabIndex = 4;
             // 
             // _CountryStatusLabel
@@ -150,7 +153,7 @@
             // _GameStatusLabel
             // 
             this._GameStatusLabel.Name = "_GameStatusLabel";
-            this._GameStatusLabel.Size = new System.Drawing.Size(555, 17);
+            this._GameStatusLabel.Size = new System.Drawing.Size(1877, 17);
             this._GameStatusLabel.Spring = true;
             this._GameStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -174,20 +177,22 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this._MainTabControl.Controls.Add(this._AchievementsTabPage);
             this._MainTabControl.Controls.Add(this._StatisticsTabPage);
-            this._MainTabControl.Location = new System.Drawing.Point(8, 33);
+            this._MainTabControl.Location = new System.Drawing.Point(25, 94);
+            this._MainTabControl.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this._MainTabControl.Name = "_MainTabControl";
             this._MainTabControl.SelectedIndex = 0;
-            this._MainTabControl.Size = new System.Drawing.Size(696, 334);
+            this._MainTabControl.Size = new System.Drawing.Size(2204, 951);
             this._MainTabControl.TabIndex = 5;
             // 
             // _AchievementsTabPage
             // 
             this._AchievementsTabPage.Controls.Add(this._AchievementListView);
             this._AchievementsTabPage.Controls.Add(this._AchievementsToolStrip);
-            this._AchievementsTabPage.Location = new System.Drawing.Point(4, 22);
+            this._AchievementsTabPage.Location = new System.Drawing.Point(4, 46);
+            this._AchievementsTabPage.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this._AchievementsTabPage.Name = "_AchievementsTabPage";
-            this._AchievementsTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this._AchievementsTabPage.Size = new System.Drawing.Size(688, 308);
+            this._AchievementsTabPage.Padding = new System.Windows.Forms.Padding(10, 9, 10, 9);
+            this._AchievementsTabPage.Size = new System.Drawing.Size(2196, 901);
             this._AchievementsTabPage.TabIndex = 0;
             this._AchievementsTabPage.Text = "Achievements";
             this._AchievementsTabPage.UseVisualStyleBackColor = true;
@@ -195,7 +200,7 @@
             // _AchievementListView
             // 
             this._AchievementListView.Activation = System.Windows.Forms.ItemActivation.OneClick;
-            this._AchievementListView.BackColor = System.Drawing.Color.Black;
+            this._AchievementListView.BackColor = System.Drawing.Color.Gainsboro;
             this._AchievementListView.BackgroundImageTiled = true;
             this._AchievementListView.CheckBoxes = true;
             this._AchievementListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -203,20 +208,22 @@
             this._AchievementDescriptionColumnHeader,
             this._AchievementUnlockTimeColumnHeader});
             this._AchievementListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._AchievementListView.ForeColor = System.Drawing.Color.White;
+            this._AchievementListView.ForeColor = System.Drawing.Color.Black;
             this._AchievementListView.FullRowSelect = true;
             this._AchievementListView.GridLines = true;
             this._AchievementListView.HideSelection = false;
             this._AchievementListView.LargeImageList = this._AchievementImageList;
-            this._AchievementListView.Location = new System.Drawing.Point(3, 28);
+            this._AchievementListView.Location = new System.Drawing.Point(10, 34);
+            this._AchievementListView.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this._AchievementListView.Name = "_AchievementListView";
-            this._AchievementListView.Size = new System.Drawing.Size(682, 277);
+            this._AchievementListView.Size = new System.Drawing.Size(2176, 858);
             this._AchievementListView.SmallImageList = this._AchievementImageList;
             this._AchievementListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this._AchievementListView.TabIndex = 4;
             this._AchievementListView.UseCompatibleStateImageBehavior = false;
             this._AchievementListView.View = System.Windows.Forms.View.Details;
             this._AchievementListView.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.OnCheckAchievement);
+            this._AchievementListView.SelectedIndexChanged += new System.EventHandler(this._AchievementListView_SelectedIndexChanged);
             // 
             // _AchievementNameColumnHeader
             // 
@@ -246,9 +253,10 @@
             _ToolStripSeparator2,
             this._MatchingStringLabel,
             this._MatchingStringTextBox});
-            this._AchievementsToolStrip.Location = new System.Drawing.Point(3, 3);
+            this._AchievementsToolStrip.Location = new System.Drawing.Point(10, 9);
             this._AchievementsToolStrip.Name = "_AchievementsToolStrip";
-            this._AchievementsToolStrip.Size = new System.Drawing.Size(682, 25);
+            this._AchievementsToolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this._AchievementsToolStrip.Size = new System.Drawing.Size(2176, 25);
             this._AchievementsToolStrip.TabIndex = 5;
             // 
             // _LockAllButton
@@ -322,7 +330,7 @@
             // 
             this._MatchingStringTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this._MatchingStringTextBox.Name = "_MatchingStringTextBox";
-            this._MatchingStringTextBox.Size = new System.Drawing.Size(100, 25);
+            this._MatchingStringTextBox.Size = new System.Drawing.Size(308, 25);
             this._MatchingStringTextBox.ToolTipText = "Type at least 3 characters that must appear in the name or description";
             this._MatchingStringTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnFilterUpdate);
             // 
@@ -330,10 +338,11 @@
             // 
             this._StatisticsTabPage.Controls.Add(this._EnableStatsEditingCheckBox);
             this._StatisticsTabPage.Controls.Add(this._StatisticsDataGridView);
-            this._StatisticsTabPage.Location = new System.Drawing.Point(4, 22);
+            this._StatisticsTabPage.Location = new System.Drawing.Point(4, 46);
+            this._StatisticsTabPage.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this._StatisticsTabPage.Name = "_StatisticsTabPage";
-            this._StatisticsTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this._StatisticsTabPage.Size = new System.Drawing.Size(688, 308);
+            this._StatisticsTabPage.Padding = new System.Windows.Forms.Padding(10, 9, 10, 9);
+            this._StatisticsTabPage.Size = new System.Drawing.Size(2196, 901);
             this._StatisticsTabPage.TabIndex = 1;
             this._StatisticsTabPage.Text = "Statistics";
             this._StatisticsTabPage.UseVisualStyleBackColor = true;
@@ -343,9 +352,10 @@
             this._EnableStatsEditingCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this._EnableStatsEditingCheckBox.AutoSize = true;
-            this._EnableStatsEditingCheckBox.Location = new System.Drawing.Point(6, 285);
+            this._EnableStatsEditingCheckBox.Location = new System.Drawing.Point(19, 819);
+            this._EnableStatsEditingCheckBox.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this._EnableStatsEditingCheckBox.Name = "_EnableStatsEditingCheckBox";
-            this._EnableStatsEditingCheckBox.Size = new System.Drawing.Size(512, 17);
+            this._EnableStatsEditingCheckBox.Size = new System.Drawing.Size(1507, 41);
             this._EnableStatsEditingCheckBox.TabIndex = 1;
             this._EnableStatsEditingCheckBox.Text = "I understand by modifying the values of stats, I may screw things up and can\'t bl" +
     "ame anyone but myself.";
@@ -360,25 +370,28 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this._StatisticsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this._StatisticsDataGridView.Location = new System.Drawing.Point(6, 6);
+            this._StatisticsDataGridView.Location = new System.Drawing.Point(19, 17);
+            this._StatisticsDataGridView.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this._StatisticsDataGridView.Name = "_StatisticsDataGridView";
-            this._StatisticsDataGridView.Size = new System.Drawing.Size(596, 273);
+            this._StatisticsDataGridView.Size = new System.Drawing.Size(1887, 777);
             this._StatisticsDataGridView.TabIndex = 0;
             this._StatisticsDataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.OnStatCellEndEdit);
             this._StatisticsDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.OnStatDataError);
             // 
             // Manager
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(712, 392);
+            this.ClientSize = new System.Drawing.Size(1924, 1061);
             this.Controls.Add(this._MainToolStrip);
             this.Controls.Add(this._MainTabControl);
             this.Controls.Add(this._MainStatusStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(640, 50);
+            this.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
+            this.MinimumSize = new System.Drawing.Size(1918, 70);
             this.Name = "Manager";
-            this.Text = "Steam Achievement Manager 7.0";
+            this.Opacity = 0.98D;
+            this.Text = "Steam Achievement Manager - Local 1.0";
             this._MainToolStrip.ResumeLayout(false);
             this._MainToolStrip.PerformLayout();
             this._MainStatusStrip.ResumeLayout(false);

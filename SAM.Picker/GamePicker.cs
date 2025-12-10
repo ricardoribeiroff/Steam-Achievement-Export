@@ -530,5 +530,10 @@ namespace SAM.Picker
                 this.DownloadNextLogo();
             }
         }
+
+        private void GamePicker_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

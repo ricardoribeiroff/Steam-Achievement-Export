@@ -91,6 +91,11 @@ namespace SAM.Game
 
             this._IconDownloader.DownloadDataCompleted += this.OnIconDownload;
 
+            this._AchievementListView.ForeColor = Color.Black;
+            this._AchievementListView.BackColor = Color.Gainsboro;
+            this._StatisticsDataGridView.DefaultCellStyle.ForeColor = Color.Black;
+            this._StatisticsDataGridView.RowsDefaultCellStyle.ForeColor = Color.Black;
+
             string name = this._SteamClient.SteamApps001.GetAppData((uint)this._GameId, "name");
             if (name != null)
             {
@@ -487,7 +492,7 @@ namespace SAM.Game
                     Checked = isAchieved,
                     Tag = info,
                     Text = info.Name,
-                    BackColor = (def.Permission & 3) == 0 ? Color.Black : Color.FromArgb(64, 0, 0),
+                    BackColor = (def.Permission & 3) == 0 ? Color.Gainsboro : Color.FromArgb(64, 0, 0),
                 };
 
                 info.Item = item;
@@ -907,6 +912,11 @@ namespace SAM.Game
         private void OnFilterUpdate(object sender, KeyEventArgs e)
         {
             this.GetAchievements();
+        }
+
+        private void _AchievementListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
