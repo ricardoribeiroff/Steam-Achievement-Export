@@ -50,10 +50,10 @@ namespace SAM.Game
 
         private readonly API.Callbacks.UserStatsReceived _UserStatsReceivedCallback;
 
-        // Modificação: Nome do arquivo INI
+        // INI file name
         private const string ACHIEVEMENTS_INI_FILENAME = "achievements.ini";
 
-        // NOVO: Define a pasta raiz fixa do RUNE
+        // Defines the fixed RUNE base folder
         private const string RUNE_BASE_PATH = @"C:\Users\Public\Documents\Steam\RUNE";
 
         public Manager(long gameId, API.Client client)
@@ -472,7 +472,7 @@ namespace SAM.Game
                         ? DateTimeOffset.FromUnixTimeSeconds(unlockTime).LocalDateTime
                         : (DateTime?)null,
 
-                    // Armazena o timestamp Unix original para uso no INI
+                    // Stores the original Unix timestamp for INI usage
                     UnlockTimeUnix = unlockTime > 0 ? (long?)unlockTime : null,
 
                     IconNormal = string.IsNullOrEmpty(def.IconNormal) ? null : def.IconNormal,
@@ -585,11 +585,11 @@ namespace SAM.Game
 
         private int StoreAchievements()
         {
-            // Funções de API Steam desabilitadas aqui para forçar o salvamento local.
+            // Steam API functions disabled here to force local saving.
             return 0;
         }
 
-        // --- FUNÇÃO DE SALVAMENTO INI CUSTOMIZADA (CAMINHO FIXO) ---
+        // --- CUSTOM INI SAVING FUNCTION (FIXED PATH) ---
         private int SaveAchievementsToIni()
         {
             if (this._AchievementListView.Items.Count == 0)
@@ -601,23 +601,23 @@ namespace SAM.Game
 
             int achievementsSavedCount = 0;
 
-            // Usamos o Unix Time atual como fallback se a conquista não tinha um timestamp anterior
+            // Use current Unix Time as a fallback if the achievement did not have a previous timestamp
             long currentUnixTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
 
             foreach (ListViewItem item in this._AchievementListView.Items)
             {
                 if (item.Checked && item.Tag is Stats.AchievementInfo achievementInfo)
                 {
-                    // Usa o UnlockTimeUnix existente ou o tempo Unix atual
+                    // Use the existing UnlockTimeUnix or the current Unix time
                     long unlockTime = achievementInfo.UnlockTimeUnix ?? currentUnixTime;
 
-                    // Adiciona o cabeçalho da seção [ID_DA_CONQUISTA]
+                    // Add the section header [ACHIEVEMENT_ID]
                     content.Add($"[{achievementInfo.Id}]");
 
-                    // Adiciona as chaves e valores no formato solicitado
+                    // Add the keys and values in the requested format
                     content.Add($"Achieved=1");
                     content.Add($"UnlockTime={unlockTime}");
-                    content.Add(""); // Linha em branco para separar as seções
+                    content.Add(""); // Blank line to separate sections
 
                     achievementsSavedCount++;
                 }
@@ -625,20 +625,20 @@ namespace SAM.Game
 
             try
             {
-                // 1. Define a pasta raiz fixa (C:\Users\Public\Documents\Steam\RUNE)
+                // 1. Define the fixed root path (C:\Users\Public\Documents\Steam\RUNE)
                 string rootPath = RUNE_BASE_PATH;
 
-                // 2. Define o diretório baseado no GameId (ex: ...\RUNE\123456)
+                // 2. Define the GameId directory (e.g., ...\RUNE\123456)
                 string gameIdString = this._GameId.ToString(CultureInfo.InvariantCulture);
                 string appDirectory = Path.Combine(rootPath, gameIdString);
 
-                // 3. Cria o diretório se ele não existir (incluindo todas as pastas pais, se necessário)
+                // 3. Create the directory if it does not exist (including all parent folders)
                 Directory.CreateDirectory(appDirectory);
 
-                // 4. Define o caminho completo do arquivo (ex: ...\RUNE\123456\achievements.ini)
+                // 4. Define the full file path (e.g., ...\RUNE\123456\achievements.ini)
                 var savePath = Path.Combine(appDirectory, ACHIEVEMENTS_INI_FILENAME);
 
-                // 5. Escreve o arquivo
+                // 5. Write the file
                 File.WriteAllLines(savePath, content);
                 return achievementsSavedCount;
             }
@@ -653,7 +653,7 @@ namespace SAM.Game
                 return -1;
             }
         }
-        // --- FIM DA FUNÇÃO INI CUSTOMIZADA ---
+        // --- END OF CUSTOM INI FUNCTION ---
 
         private int StoreStatistics()
         {
