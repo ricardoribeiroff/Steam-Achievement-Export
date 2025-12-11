@@ -1,4 +1,4 @@
-# Steam Achievement Export
+# Steam Achievement Export v1.0 (beta)
 
 This repository contains a modified fork of Steam Achievement Manager (SAM).
 
